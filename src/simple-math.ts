@@ -19,16 +19,16 @@ export class MyMCP extends McpAgent<Env, Record<string, never>, Record<string, n
                 b: z.number(),
             },
             async ({ operation, a, b }) => {
-                let result: number;
+                let result: BigInt;
                 switch (operation) {
                     case "add":
-                        result = a + b;
+                        result = BigInt(a) + BigInt(b);
                         break;
                     case "subtract":
-                        result = a - b;
+                        result = BigInt(a) - BigInt(b);
                         break;
                     case "multiply":
-                        result = a * b;
+                        result = BigInt(a) * BigInt(b);
                         break;
                     case "divide":
                         if (b === 0)
@@ -40,7 +40,7 @@ export class MyMCP extends McpAgent<Env, Record<string, never>, Record<string, n
                                     },
                                 ],
                             };
-                        result = a / b;
+                        result = BigInt(a) / BigInt(b);
                         break;
                 }
                 return { content: [{ type: "text", text: String(result) }] };
